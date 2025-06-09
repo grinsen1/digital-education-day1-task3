@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейс медиапланера: Анализ охватов МегаФон</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎯 Кейс медиапланера: Анализ охватов МегаФон</h1>
+            <p class="subtitle">Вы медиапланер в МегаФон. Рекламная кампания завершилась, и нужно проанализировать результаты, подготовить отчёты для внутренних департаментов и дать рекомендации для следующих кампаний.</p>
+        </header>
+
+        <section class="campaign-data">
+            <h2>📊 Данные кампании</h2>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Площадка</th>
+                            <th>Показы</th>
+                            <th>Куки</th>
+                            <th>Люди</th>
+                            <th>Бюджет</th>
+                        </tr>
+                    </thead>
+                    <tbody id="campaignTableBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td><strong>ИТОГО</strong></td>
+                            <td><strong>82,000,000</strong></td>
+                            <td><strong>52,500,000</strong></td>
+                            <td><strong>35,000,000</strong></td>
+                            <td><strong>₽7,740,000</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <section class="progress-section">
+            <h3>Прогресс выполнения</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="progress-text" id="progressText">0 из 6 заданий выполнено</p>
+        </section>
+
+        <section class="tasks-section">
+            <h2>📝 Практические задания</h2>
+            
+            <!-- Task 1 -->
+            <div class="task-card" data-task-id="1">
+                <div class="task-header">
+                    <h3>1. Детектив охватов 🕵️</h3>
+                    <div class="task-status-container">
+                        <button class="tooltip-btn" data-tooltip="Подумай о связи между общим количеством показов и количеством людей. Что происходит, когда одному человеку показывают рекламу несколько раз?">?</button>
+                        <div class="task-status" id="status-1"></div>
+                    </div>
+                </div>
+                <div class="task-content">
+                    <p class="task-question">Бизнес-аналитик спрашивает: "Мы заплатили за 82 млн показов, но охватили только 35 млн человек! Куда делись остальные 47 млн?" Что ему ответить?</p>
+                    
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="answer-1" value="a">
+                            <span class="radio-text">a) Показы исчезли из-за технического сбоя в рекламных системах</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="answer-1" value="b">
+                            <span class="radio-text">b) 47 млн показов = это частота. Каждому человеку мы показали рекламу в среднем 2.3 раза, что нормально для запоминания бренда</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="answer-1" value="c">
+                            <span class="radio-text">c) Площадки накрутили показы и обманули нас</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="answer-1" value="d">
+                            <span class="radio-text">d) Это ошибка в подсчётах, нужно пересчитать</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="answer-1" value="e">
+                            <span class="radio-text">e) Мы показали рекламу инопланетянам, поэтому они не считаются</span>
+                        </label>
+                    </div>
+                    
+                    <div class="task-actions">
+                        <button class="btn btn--primary" onclick="checkAnswer(1)">Проверить ответ</button>
+                        <button class="btn btn--secondary" onclick="resetTask(1)">Сбросить</button>
+                    </div>
+                    <div class="answer-feedback" id="feedback-1"></div>
+                </div>
+            </div>
+
+            <!-- Task 2 -->
+            <div class="task-card" data-task-id="2">
+                <div class="task-header">
+                    <h3>2. Оптимизатор бюджета 💰</h3>
+                    <div class="task-status-container">
+                        <button class="tooltip-btn" data-tooltip="Сначала рассчитай CPM из текущих данных, потом используй формулу: Показы = Люди × Частота. А стоимость = Показы × CPM / 1000">?</button>
+                        <div class="task-status" id="status-2"></div>
+                    </div>
+                </div>
+                <div class="task-content">
+                    <p class="task-question">Продукт-овнер дает новое ТЗ: "В следующей кампании хотим охватить 40 млн человек с частотой 3. Сколько это будет стоить и сколько показов потребуется?"</p>
+                    <div class="input-group">
+                        <label class="form-label">Стоимость (₽):</label>
+                        <input type="number" class="form-control" id="cost-2" placeholder="Введите стоимость">
+                    </div>
+                    <div class="input-group">
+                        <label class="form-label">Количество показов:</label>
+                        <input type="number" class="form-control" id="impressions-2" placeholder="Введите количество показов">
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn btn--primary" onclick="checkAnswer(2)">Проверить ответ</button>
+                        <button class="btn btn--secondary" onclick="resetTask(2)">Сбросить</button>
+                    </div>
+                    <div class="answer-feedback" id="feedback-2"></div>
+                </div>
+            </div>
+
+            <!-- Task 3 -->
+            <div class="task-card" data-task-id="3">
+                <div class="task-header">
+                    <h3>3. Эффективность vs Охват ⚖️</h3>
+                    <div class="task-status-container">
+                        <button class="tooltip-btn" data-tooltip="Рассчитай стоимость за 1000 человек и за 1000 кук для каждой площадки. Меньше стоимость = выше эффективность">?</button>
+                        <div class="task-status" id="status-3"></div>
+                    </div>
+                </div>
+                <div class="task-content">
+                    <p class="task-question">Финансовый аналитик спрашивает: "Какая площадка самая эффективная для охвата людей? А какая - для технических показателей (куки)?"</p>
+                    <div class="input-group">
+                        <label class="form-label">Самая эффективная для людей:</label>
+                        <select class="form-control" id="people-platform-3">
+                            <option value="">Выберите площадку</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="VK">VK</option>
+                            <option value="MyTarget">MyTarget</option>
+                            <option value="Yandex">Yandex</option>
+                            <option value="RBC">RBC</option>
+                            <option value="Telegram">Telegram</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label class="form-label">Самая эффективная для кук:</label>
+                        <select class="form-control" id="cookies-platform-3">
+                            <option value="">Выберите площадку</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="VK">VK</option>
+                            <option value="MyTarget">MyTarget</option>
+                            <option value="Yandex">Yandex</option>
+                            <option value="RBC">RBC</option>
+                            <option value="Telegram">Telegram</option>
+                        </select>
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn btn--primary" onclick="checkAnswer(3)">Проверить ответ</button>
+                        <button class="btn btn--secondary" onclick="resetTask(3)">Сбросить</button>
+                    </div>
+                    <div class="answer-feedback" id="feedback-3"></div>
+                </div>
+            </div>
+
+            <!-- Task 4 -->
+            <div class="task-card" data-task-id="4">
+                <div class="task-header">
+                    <h3>4. Защитник репутации 🛡️</h3>
+                    <div class="task-status-container">
+                        <button class="tooltip-btn" data-tooltip="Подумай о том, какие факторы влияют на измерение охватов. Можно ли прямо сравнивать цифры от разных компаний?">?</button>
+                        <div class="task-status" id="status-4"></div>
+                    </div>
+                </div>
+                <div class="task-content">
+                    <p class="task-question">Внутренний аудитор недоволен: "Конкуренты говорят, что охватили 50 млн человек за тот же бюджет! Мы работаем плохо?" Что ответить?</p>
+                    
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="answer-4" value="a">
+                            <span class="radio-text">a) Конкуренты врут, у них не может быть лучше</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="answer-4" value="b">
+                            <span class="radio-text">b) Прямое сравнение некорректно: разные определения "человека", разные ЦА, площадки и качество контакта. Важны конверсии, а не только охваты</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="answer-4" value="c">
+                            <span class="radio-text">c) Мы действительно работаем плохо, нужно увольняться</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="answer-4" value="d">
+                            <span class="radio-text">d) Конкуренты используют ботов, поэтому у них больше охват</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="answer-4" value="e">
+                            <span class="radio-text">e) Это всё политика, цифры ничего не значат</span>
+                        </label>
+                    </div>
+                    
+                    <div class="task-actions">
+                        <button class="btn btn--primary" onclick="checkAnswer(4)">Проверить ответ</button>
+                        <button class="btn btn--secondary" onclick="resetTask(4)">Сбросить</button>
+                    </div>
+                    <div class="answer-feedback" id="feedback-4"></div>
+                </div>
+            </div>
+
+            <!-- Bonus Task -->
+            <div class="task-card bonus-task" data-task-id="5">
+                <div class="task-header">
+                    <h3>🎁 Бонус-уровень: Кризис-менеджер</h3>
+                    <div class="task-status-container">
+                        <button class="tooltip-btn" data-tooltip="Если YouTube потерял 30% охвата, то вместо 8 млн человек стал охватывать меньше. Пересчитай общий охват с учётом уменьшения">?</button>
+                        <div class="task-status" id="status-5"></div>
+                    </div>
+                </div>
+                <div class="task-content">
+                    <p class="task-question">В середине кампании у YouTube случился технический сбой и 30% показов не засчитались в трекинге. Как это повлияет на итоговые показатели охвата людей?</p>
+                    <div class="input-group">
+                        <label class="form-label">Новый охват людей:</label>
+                        <input type="number" class="form-control" id="new-reach-5" placeholder="Введите новый охват">
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn btn--primary" onclick="checkAnswer(5)">Проверить ответ</button>
+                        <button class="btn btn--secondary" onclick="resetTask(5)">Сбросить</button>
+                    </div>
+                    <div class="answer-feedback" id="feedback-5"></div>
+                </div>
+            </div>
+
+            <!-- Mega Boss Task -->
+            <div class="task-card mega-boss-task" data-task-id="6">
+                <div class="task-header">
+                    <h3>👑 Мега-босс: Консультант CEO</h3>
+                    <div class="task-status-container">
+                        <button class="tooltip-btn" data-tooltip="Найди самую эффективную площадку по стоимости за 1000 человек, потом рассчитай сколько людей можно охватить за весь бюджет">?</button>
+                        <div class="task-status" id="status-6"></div>
+                    </div>
+                </div>
+                <div class="task-content">
+                    <p class="task-question">CEO МегаФона спрашивает: "А если бы мы весь бюджет потратили только на самую эффективную площадку (Telegram), сколько бы людей охватили?"</p>
+                    <div class="input-group">
+                        <label class="form-label">Максимальный охват:</label>
+                        <input type="number" class="form-control" id="max-reach-6" placeholder="Введите максимальный охват">
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn btn--primary" onclick="checkAnswer(6)">Проверить ответ</button>
+                        <button class="btn btn--secondary" onclick="resetTask(6)">Сбросить</button>
+                    </div>
+                    <div class="answer-feedback" id="feedback-6"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
