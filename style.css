@@ -1711,7 +1711,10 @@ textarea.form-control {
   pointer-events: none;
   white-space: normal;
 }
-
+.tooltip-btn:hover + .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
 .tooltip.show {
   opacity: 1;
   visibility: visible;
