@@ -1462,6 +1462,8 @@ select.form-control {
 .task-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
+  z-index: 1000000;
+  position: relative;
 }
 
 .bonus-task {
@@ -1694,9 +1696,11 @@ textarea.form-control {
 
 
 .tooltip {
-  position: absolute;
-  bottom: calc(100% + 12px);
-  right: 0;
+  position: fixed;
+  bottom: auto;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
   background: var(--color-text);
   color: var(--color-surface);
   padding: 8px 12px;
@@ -1707,10 +1711,11 @@ textarea.form-control {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  z-index: 1002;
+  z-index: 999999;
   pointer-events: none;
   white-space: normal;
 }
+
 .tooltip-btn:hover + .tooltip {
   opacity: 1;
   visibility: visible;
@@ -1723,10 +1728,11 @@ textarea.form-control {
 .tooltip::after {
   content: '';
   position: absolute;
-  top: 100%;
-  right: 12px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
   border: 6px solid transparent;
-  border-top-color: var(--color-text);
+  border-bottom-color: var(--color-text);
 }
 
 /* Responsive design */
