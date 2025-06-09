@@ -1464,6 +1464,7 @@ select.form-control {
   transform: translateY(-2px);
   z-index: 1000000;
   position: relative;
+  overflow: visible; /* ДОБАВИТЬ ЭТУ СТРОКУ */
 }
 
 .bonus-task {
@@ -1513,10 +1514,7 @@ select.form-control {
   gap: var(--space-8);
   position: relative; /* ДОБАВИТЬ ЭТУ СТРОКУ */
 }
-.task-status-container:hover .tooltip {
-  opacity: 1;
-  visibility: visible;
-}
+
 .task-status {
   display: flex;
   align-items: center;
@@ -1696,9 +1694,8 @@ textarea.form-control {
 
 
 .tooltip {
-  position: fixed;
-  bottom: auto;
-  top: calc(100% + 8px);
+  position: absolute;
+  bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   background: var(--color-text);
@@ -1711,7 +1708,7 @@ textarea.form-control {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  z-index: 999999;
+  z-index: 999999; /* ИЗМЕНИТЬ С 9999 НА 999999 */
   pointer-events: none;
   white-space: normal;
 }
