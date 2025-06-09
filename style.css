@@ -1511,7 +1511,10 @@ select.form-control {
   gap: var(--space-8);
   position: relative; /* ДОБАВИТЬ ЭТУ СТРОКУ */
 }
-
+.task-status-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
 .task-status {
   display: flex;
   align-items: center;
@@ -1718,7 +1721,7 @@ textarea.form-control {
   content: '';
   position: absolute;
   top: 100%;
-  left: 20px;
+  right: 12px;
   border: 6px solid transparent;
   border-top-color: var(--color-text);
 }
