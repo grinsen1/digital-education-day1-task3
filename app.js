@@ -208,13 +208,23 @@ function checkAnswer(taskId) {
             }
             break;
             
-        case 'select':
-            const peoplePlatform = document.getElementById(`people-platform-${taskId}`).value;
-            const cookiesPlatform = document.getElementById(`cookies-platform-${taskId}`).value;
-            isCorrect = peoplePlatform === task.correctAnswers.peoplePlatform && 
-                       cookiesPlatform === task.correctAnswers.cookiesPlatform;
-            userAnswer = `Люди: ${peoplePlatform}, Куки: ${cookiesPlatform}`;
-            break;
+  case 'select':
+    const peoplePlatform = document.getElementById(`people-platform-${taskId}`).value;
+    const cookiesPlatform = document.getElementById(`cookies-platform-${taskId}`).value;
+    
+    const peopleCorrect = peoplePlatform === task.correctAnswers.peoplePlatform;
+    
+    // Поддержка массива правильных ответов для cookiesPlatform
+    let cookiesCorrect;
+    if (Array.isArray(task.correctAnswers.cookiesPlatform)) {
+        cookiesCorrect = task.correctAnswers.cookiesPlatform.includes(cookiesPlatform);
+    } else {
+        cookiesCorrect = cookiesPlatform === task.correctAnswers.cookiesPlatform;
+    }
+    
+    isCorrect = peopleCorrect && cookiesCorrect;
+    userAnswer = `Люди: ${peoplePlatform}, Куки: ${cookiesPlatform}`;
+    break;
     }
     
     showFeedback(taskId, isCorrect, userAnswer);
@@ -290,7 +300,10 @@ function showFeedback(taskId, isCorrect, userAnswer) {
     } else if (task.type === 'select') {
         content += `<h4>Правильный ответ:</h4>`;
         content += `<p><strong>Самая эффективная для людей:</strong> ${task.correctAnswers.peoplePlatform}</p>`;
-        content += `<p><strong>Самая эффективная для кук:</strong> ${task.correctAnswers.cookiesPlatform}</p>`;
+       const cookiesAnswer = Array.isArray(task.correctAnswers.cookiesPlatform) 
+    ? task.correctAnswers.cookiesPlatform.join(' или ') 
+    : task.correctAnswers.cookiesPlatform;
+content += `<p><strong>Самая эффективная для кук:</strong> ${cookiesAnswer}</p>`;
         content += `<h4>Объяснение:</h4>`;
         content += `<p>${task.explanation}</p>`;
     }
