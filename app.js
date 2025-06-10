@@ -77,7 +77,7 @@ const tasks = {
         type: 'select',
         correctAnswers: {
             peoplePlatform: "VK",
-            cookiesPlatform: "VK", "Yandex"
+            cookiesPlatform: ["VK", "Yandex"],
         },
         explanation: "По людям эффективнее VK (₽150 за 1000 человек), по кукам VK и Yandex (₽120 за 1000 кук). Разница из-за пересечений аудиторий и качества трафика."
     },
